@@ -9,7 +9,6 @@ const acceptAgreements = e => {
             input.checked = e.target.checked;
             input.disabled = e.target.checked;
         }
-        // Jak to zapisać w operatorze warunkowym bo nie wychodzi :P
     });
 };
 
@@ -53,12 +52,11 @@ const validate = () => {
     arrayOfInputs.map(input => {
         if (!input.value) {
             errors.push(input);
-        } else if (input.id === "first-accept") {
-            !input.checked && errors.push(input);
+        } else if (input.id === "first-accept" && !input.checked) {
+            errors.push(input);
         } else if (input.id === "email") {
             !input.value.includes("@") && errors.push(input);
         }
-        // jak sprawdzić else if jednocześnie czy się zgadza id i czy jest checked ?
     });
     return errors.length ? handleErrors(errors) : sendForm();
 };
